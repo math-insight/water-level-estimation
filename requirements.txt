@@ -1,4 +1,5 @@
 pandas
 IPython
 matplotlib
-seaborn
+scipy
+plotly
