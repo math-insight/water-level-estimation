@@ -6,7 +6,7 @@ from scipy.signal import find_peaks, savgol_filter
 from matplotlib.dates import DateFormatter, MonthLocator
 
 
-def make_figure(rows):
+def make_figure(rows: int) -> tuple[plt.Figure, list[plt.Axes]]:
     fig, axes = plt.subplots(
         figsize=(36,16*(rows-1)),
         ncols=1,
@@ -16,7 +16,7 @@ def make_figure(rows):
     return fig, axes
 
 
-def set_plot_properties(ax, title, xlim=None):
+def set_plot_properties(ax: plt.Axes, title: str, xlim: tuple=None) -> None:
     ax.legend(loc='upper right', fontsize=20)
     ax.set_title(title, fontsize=30)
     ax.set_xlabel('Miesiąc', fontsize=15)
@@ -29,7 +29,7 @@ def set_plot_properties(ax, title, xlim=None):
     ax.xaxis.set_major_formatter(months_fmt)
 
 
-def multiple_stations_plot(data, stations, years):
+def multiple_stations_plot(data: pd.DataFrame, stations: list[str], years: list[int]) -> None:
     stations_palette = faded_color_vectors((1,0,0), len(stations))
 
     fig, axes = make_figure(len(years))
@@ -61,7 +61,7 @@ def multiple_stations_plot(data, stations, years):
     plt.show()
 
 
-def one_station_plot(data, station, years_per_chart):
+def one_station_plot(data: pd.DataFrame, station: list[str], years_per_chart: int) -> None:
     data_station = data[data['Station'] == station]
     data_grouped = data_station \
         .groupby(['Date'])['B00020S'] \
@@ -92,7 +92,7 @@ def one_station_plot(data, station, years_per_chart):
     plt.show()
 
 
-def peaks_plot(data, stations, years, prominence):
+def peaks_plot(data: pd.DataFrame, stations: list[str], years: list[int], prominence: int) -> None:
     stations_palette = faded_color_vectors((1,0,0), len(stations))
     peaks_palette = faded_color_vectors((0,1,1), len(stations))
 
@@ -137,7 +137,7 @@ def peaks_plot(data, stations, years, prominence):
     plt.show()
 
 
-def savgol_plot(data, stations, years, polyorder, window_length):
+def savgol_plot(data: pd.DataFrame, stations: list[str], years: list[int], polyorder: int, window_length: int) -> None:
     mode = 'nearest'
     n_charts = len(years) * len(stations)
 
@@ -184,7 +184,7 @@ def savgol_plot(data, stations, years, polyorder, window_length):
     plt.show()
 
 
-def peaks_savgol_plot(data, stations, years, prominence, polyorder, window_length):
+def peaks_savgol_plot(data: pd.DataFrame, stations: list[str], years: list[int], prominence: int, polyorder: int, window_length: int) -> None:
     mode = 'nearest'
 
     stations_palette = faded_color_vectors((0,0,1), len(stations))
