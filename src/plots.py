@@ -1,33 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from math import ceil
-from presentation_functions import faded_color_vectors
+from presentation_functions import faded_color_vectors, make_figure, set_plot_properties
 from scipy.signal import find_peaks, savgol_filter
-from matplotlib.dates import DateFormatter, MonthLocator
-
-
-def make_figure(rows: int) -> tuple[plt.Figure, list[plt.Axes]]:
-    fig, axes = plt.subplots(
-        figsize=(36,16*(rows-1)),
-        ncols=1,
-        nrows=rows,
-        gridspec_kw={'hspace': 0.3}
-    )
-    return fig, axes
-
-
-def set_plot_properties(ax: plt.Axes, title: str, xlim: tuple=None) -> None:
-    ax.legend(loc='upper right', fontsize=20)
-    ax.set_title(title, fontsize=30)
-    ax.set_xlabel('Miesiąc', fontsize=15)
-    ax.set_ylabel('Poziom wody (cm)', fontsize=15)
-    ax.set_xlim(xlim)
-    ax.set_ylim(0, 1000)
-    months_locator = MonthLocator()
-    months_fmt = DateFormatter("%b")
-    ax.xaxis.set_major_locator(months_locator)
-    ax.xaxis.set_major_formatter(months_fmt)
-
 
 def multiple_stations_plot(data: pd.DataFrame, stations: list[str], years: list[int]) -> None:
     stations_palette = faded_color_vectors((1,0,0), len(stations))
