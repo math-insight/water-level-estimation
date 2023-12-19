@@ -3,3 +3,5 @@ IPython
 matplotlib
 scipy
 plotly
+statsmodels
+scikit-learn
