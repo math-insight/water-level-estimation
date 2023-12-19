@@ -1,5 +1,5 @@
 from matplotlib.dates import DateFormatter, MonthLocator
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def faded_color_vectors(initial_color: tuple[float, float, float], n: int) -> list[tuple[float, float, float]]:
     step_size = 1.0 / n
@@ -13,7 +13,7 @@ def faded_color_vectors(initial_color: tuple[float, float, float], n: int) -> li
     ]
     return faded_red_vectors
 
-def make_figure(rows: int) -> tuple[plt.Figure, list[plt.Axes]]:
+def make_figure(rows: int):
     fig, axes = plt.subplots(
         figsize=(36,16*(rows-1)),
         ncols=1,
@@ -23,7 +23,7 @@ def make_figure(rows: int) -> tuple[plt.Figure, list[plt.Axes]]:
     return fig, axes
 
 
-def set_plot_properties(ax: plt.Axes, title: str, xlim: tuple=None) -> None:
+def set_plot_properties(ax, title: str, xlim: tuple=None) -> None:
     ax.legend(loc='upper right', fontsize=20)
     ax.set_title(title, fontsize=30)
     ax.set_xlabel('Miesiąc', fontsize=15)
