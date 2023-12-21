@@ -5,3 +5,4 @@ scipy
 plotly
 statsmodels
 scikit-learn
+numpy
