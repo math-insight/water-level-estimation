@@ -30,7 +30,7 @@ def multiple_stations_plot(data, stations, years):
 
         set_plot_properties(
             ax=axes[i],
-            title='Poziom wody w wybranych stacjach w {year}',
+            title=f'Poziom wody w wybranych stacjach w {year}',
             xlim=(data_grouped_year['Date'].min(), data_grouped_year['Date'].max())
         )
 
